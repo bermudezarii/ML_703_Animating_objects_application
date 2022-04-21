@@ -13,3 +13,6 @@ datasets/
 results/
 wandb/
 data/
+first-order-model/sup-mat/
+first-order-model/logs/
+first-order-model/.ipynb_checkpoints
