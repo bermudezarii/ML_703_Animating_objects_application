@@ -7,6 +7,7 @@ __pycache__/
 datasets/
 *.pstats
 *.pth
+*.tar
 *.mp4
 *.png
 results/
