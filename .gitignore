@@ -1,0 +1,14 @@
+__pycache__/
+.idea/
+.pyc
+.vscode/
+
+# project-specific
+datasets/
+*.pstats
+*.pth
+*.mp4
+*.png
+results/
+wandb/
+data/
