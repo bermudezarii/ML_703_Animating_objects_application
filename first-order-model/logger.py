@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 import imageio
+import wandb
 
 import os
 from skimage.draw import circle
@@ -30,9 +31,12 @@ class Logger:
         loss_mean = np.array(self.loss_list).mean(axis=0)
 
         loss_string = "; ".join(["%s - %.5f" % (name, value) for name, value in zip(loss_names, loss_mean)])
+        wandb.log(dict(zip(loss_names, loss_mean)))
+        
         loss_string = str(self.epoch).zfill(self.zfill_num) + ") " + loss_string
 
         print(loss_string, file=self.log_file)
+
         self.loss_list = []
         self.log_file.flush()
 
@@ -50,7 +54,11 @@ class Logger:
     @staticmethod
     def load_cpk(checkpoint_path, generator=None, discriminator=None, kp_detector=None,
                  optimizer_generator=None, optimizer_discriminator=None, optimizer_kp_detector=None):
+        # import pdb
+        # pdb.set_trace()
         checkpoint = torch.load(checkpoint_path)
+        import pdb
+        pdb.set_trace()
         if generator is not None:
             generator.load_state_dict(checkpoint['generator'])
         if kp_detector is not None:
@@ -69,7 +77,8 @@ class Logger:
                 print ('No discriminator optimizer in the state-dict. Optimizer will be not initialized')
         if optimizer_kp_detector is not None:
             optimizer_kp_detector.load_state_dict(checkpoint['optimizer_kp_detector'])
-
+        # import pdb
+        # pdb.set_trace()
         return checkpoint['epoch']
 
     def __enter__(self):

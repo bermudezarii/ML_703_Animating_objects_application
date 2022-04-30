@@ -13,6 +13,7 @@ from frames_dataset import FramesDataset
 from modules.generator import OcclusionAwareGenerator
 from modules.discriminator import MultiScaleDiscriminator
 from modules.keypoint_detector import KPDetector
+from modules.util import init_wandb_run
 
 import torch
 
@@ -21,6 +22,7 @@ from reconstruction import reconstruction
 from animate import animate
 
 if __name__ == "__main__":
+    
     
     if sys.version_info[0] < 3:
         raise Exception("You must use Python 3 or higher. Recommended version is Python 3.7")
@@ -38,7 +40,7 @@ if __name__ == "__main__":
     opt = parser.parse_args()
     with open(opt.config) as f:
         config = yaml.load(f)
-
+    init_wandb_run(dict(config))
     if opt.checkpoint is not None:
         log_dir = os.path.join(*os.path.split(opt.checkpoint)[:-1])
     else:

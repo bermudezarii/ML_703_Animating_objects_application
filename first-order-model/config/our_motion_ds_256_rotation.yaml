@@ -1,5 +1,5 @@
 dataset_params:
-  root_dir: data/our_motion_dataset_256
+  root_dir: data/our_motion_dataset_separate_256/rotation_256
   frame_shape: [256, 256, 3]
   id_sampling: False
   augmentation_params:
@@ -59,7 +59,7 @@ train_params:
     equivariance_jacobian: 10
 
 reconstruction_params:
-  num_videos: 20
+  num_videos: 5
   format: '.mp4'
 
 animate_params:

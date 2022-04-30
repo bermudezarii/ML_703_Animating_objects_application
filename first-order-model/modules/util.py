@@ -4,7 +4,19 @@ import torch.nn.functional as F
 import torch
 
 from sync_batchnorm import SynchronizedBatchNorm2d as BatchNorm2d
+import wandb
+from datetime import datetime
+from typing import Dict
 
+def init_wandb_run(settings: Dict):
+    wandb.init(
+        project="ML703",
+        name= datetime.now().strftime('%b%d_%H-%M-%S')+"FOM", #settings['run_name'],
+        group= 'First_order_model',#settings['run_group'],
+        mode=  "online" #"disabled" if settings['debug'] else "online"
+    )
+    # Log all run settings to WandB
+    wandb.config.update(settings)
 
 def kp2gaussian(kp, spatial_size, kp_variance):
     """
