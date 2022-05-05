@@ -1,5 +1,5 @@
 dataset_params:
-  root_dir: data/periodic_256
+  root_dir: data/our_motion_dataset_separate_256/rotation
   frame_shape: [256, 256, 3]
   id_sampling: False
   augmentation_params:
@@ -37,10 +37,10 @@ model_params:
     sn: True
 
 train_params:
-  num_epochs: 2000
-  num_repeats: 20
+  num_epochs: 4000
+  num_repeats: 8
   epoch_milestones: [60, 90]
-  lr_generator: 2.0e-4
+  lr_generator: 2.0e-4 
   lr_discriminator: 2.0e-4
   lr_kp_detector: 2.0e-4
   batch_size: 18
