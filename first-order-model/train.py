@@ -1,3 +1,5 @@
+
+   
 from tqdm import trange
 import torch
 
@@ -21,22 +23,19 @@ def train(config, generator, discriminator, kp_detector, checkpoint, log_dir, da
     optimizer_kp_detector = torch.optim.Adam(kp_detector.parameters(), lr=train_params['lr_kp_detector'], betas=(0.5, 0.999))
 
     if checkpoint is not None:
-        # if train_params['lr_kp_detector'] == 0: 
         start_epoch = Logger.load_cpk(checkpoint, generator, discriminator, kp_detector,
-                                    optimizer_generator=None, optimizer_discriminator=None,
-                                    optimizer_kp_detector=None)
-        # else: 
-        #     start_epoch = Logger.load_cpk(checkpoint, generator, discriminator, kp_detector,
-        #                               optimizer_generator=None, optimizer_discriminator=None,
-        #                               optimizer_kp_detector=optimizer_kp_detector)
-        
+                                      optimizer_generator, optimizer_discriminator,
+                                      None if train_params['lr_kp_detector'] == 0 else optimizer_kp_detector)
     else:
         start_epoch = 0
 
+    print('MultiStepLR-scheduler_generator')
     scheduler_generator = MultiStepLR(optimizer_generator, train_params['epoch_milestones'], gamma=0.1,
                                       last_epoch=start_epoch - 1)
+    print('MultiStepLR-scheduler_discriminator')
     scheduler_discriminator = MultiStepLR(optimizer_discriminator, train_params['epoch_milestones'], gamma=0.1,
                                           last_epoch=start_epoch - 1)
+    print('MultiStepLR-scheduler_kp_detector')                                      
     scheduler_kp_detector = MultiStepLR(optimizer_kp_detector, train_params['epoch_milestones'], gamma=0.1,
                                         last_epoch=-1 + start_epoch * (train_params['lr_kp_detector'] != 0))
 
@@ -85,11 +84,9 @@ def train(config, generator, discriminator, kp_detector, checkpoint, log_dir, da
             scheduler_discriminator.step()
             scheduler_kp_detector.step()
             
-            train_metrics = {'generator': generator,
+            logger.log_epoch(epoch, {'generator': generator,
                                      'discriminator': discriminator,
                                      'kp_detector': kp_detector,
                                      'optimizer_generator': optimizer_generator,
                                      'optimizer_discriminator': optimizer_discriminator,
-                                     'optimizer_kp_detector': optimizer_kp_detector}
-            logger.log_epoch(epoch, train_metrics, inp=x, out=generated)
-            
+                                     'optimizer_kp_detector': optimizer_kp_detector}, inp=x, out=generated)

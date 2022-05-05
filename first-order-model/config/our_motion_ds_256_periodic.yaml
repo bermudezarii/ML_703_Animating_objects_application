@@ -37,7 +37,7 @@ model_params:
     sn: True
 
 train_params:
-  num_epochs: 1000
+  num_epochs: 4000
   num_repeats: 8
   epoch_milestones: [60, 90]
   lr_generator: 2.0e-4
@@ -59,14 +59,14 @@ train_params:
     equivariance_jacobian: 10
 
 reconstruction_params:
-  num_videos: 20
-  format: '.png'
+  num_videos: 26
+  format: '.mp4'
 
 animate_params:
   num_pairs: 50
-  format: '.png'
+  format: '.mp4'
   normalization_params:
-    adapt_movement_scale: False
+    adapt_movement_scale: True
     use_relative_movement: True
     use_relative_jacobian: True
 

@@ -1,5 +1,5 @@
 dataset_params:
-  root_dir: data/our_motion_dataset_separate_256/rotation_256
+  root_dir: data/our_motion_dataset_separate_256/rotation
   frame_shape: [256, 256, 3]
   id_sampling: False
   augmentation_params:
@@ -37,10 +37,10 @@ model_params:
     sn: True
 
 train_params:
-  num_epochs: 1000
+  num_epochs: 4000
   num_repeats: 8
   epoch_milestones: [60, 90]
-  lr_generator: 2.0e-4
+  lr_generator: 2.0e-4 
   lr_discriminator: 2.0e-4
   lr_kp_detector: 2.0e-4
   batch_size: 18
@@ -59,14 +59,14 @@ train_params:
     equivariance_jacobian: 10
 
 reconstruction_params:
-  num_videos: 5
+  num_videos: 26
   format: '.mp4'
 
 animate_params:
   num_pairs: 50
   format: '.mp4'
   normalization_params:
-    adapt_movement_scale: False
+    adapt_movement_scale: True
     use_relative_movement: True
     use_relative_jacobian: True
 

@@ -189,6 +189,8 @@ class Decoder(nn.Module):
         for up_block in self.up_blocks:
             out = up_block(out)
             skip = x.pop()
+            # if out.shape != skip.shape:
+            #     out = F.interpolate(out, skip.shape[2:], mode='bilinear')
             out = torch.cat([out, skip], dim=1)
         return out
 

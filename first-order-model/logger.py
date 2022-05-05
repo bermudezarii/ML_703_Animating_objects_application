@@ -54,15 +54,15 @@ class Logger:
     @staticmethod
     def load_cpk(checkpoint_path, generator=None, discriminator=None, kp_detector=None,
                  optimizer_generator=None, optimizer_discriminator=None, optimizer_kp_detector=None):
-        # import pdb
-        # pdb.set_trace()
+       
         checkpoint = torch.load(checkpoint_path)
-        import pdb
-        pdb.set_trace()
+
         if generator is not None:
             generator.load_state_dict(checkpoint['generator'])
+            print("generator")
         if kp_detector is not None:
             kp_detector.load_state_dict(checkpoint['kp_detector'])
+            print("kp_detector")
         if discriminator is not None:
             try:
                discriminator.load_state_dict(checkpoint['discriminator'])
@@ -70,6 +70,7 @@ class Logger:
                print ('No discriminator in the state-dict. Dicriminator will be randomly initialized')
         if optimizer_generator is not None:
             optimizer_generator.load_state_dict(checkpoint['optimizer_generator'])
+            print("optimizer_generator")
         if optimizer_discriminator is not None:
             try:
                 optimizer_discriminator.load_state_dict(checkpoint['optimizer_discriminator'])
@@ -77,8 +78,7 @@ class Logger:
                 print ('No discriminator optimizer in the state-dict. Optimizer will be not initialized')
         if optimizer_kp_detector is not None:
             optimizer_kp_detector.load_state_dict(checkpoint['optimizer_kp_detector'])
-        # import pdb
-        # pdb.set_trace()
+            print("optimizer_kp_detector")
         return checkpoint['epoch']
 
     def __enter__(self):
@@ -101,7 +101,7 @@ class Logger:
         if (self.epoch + 1) % self.checkpoint_freq == 0:
             self.save_cpk()
         self.log_scores(self.names)
-        self.visualize_rec(inp, out)
+        # self.visualize_rec(inp, out)
 
 
 class Visualizer:
