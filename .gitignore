@@ -7,12 +7,15 @@ __pycache__/
 datasets/
 *.pstats
 *.pth
+*.ckpt
 *.tar
 *.mp4
 *.png
 results/
 wandb/
 data/
+dataset/
+weights/
 first-order-model/sup-mat/
 first-order-model/logs/
 first-order-model/.ipynb_checkpoints
