@@ -9,13 +9,11 @@ datasets/
 *.pth
 *.ckpt
 *.tar
-*.mp4
 *.png
-results/
 wandb/
 data/
 log/
-other-model-attempts/
+other_model_attempts/
 dataset/
 weights/
 first-order-model/sup-mat/
