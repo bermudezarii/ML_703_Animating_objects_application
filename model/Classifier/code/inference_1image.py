@@ -30,4 +30,4 @@ def make_prediction(img_path):
     prob = out_transform(output).cpu().item()
     prediction = int(prob >= 0.5)
     
-    return prediction 
+    return prediction #0 is periodic, 1 is rotation
