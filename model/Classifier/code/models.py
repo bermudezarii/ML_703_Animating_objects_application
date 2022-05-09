@@ -8,7 +8,7 @@
 
 from torch import nn
 from torchvision import models
-from hyperparameters import parameters as params
+from .hyperparameters import parameters as params
 
 
 def resnet18():

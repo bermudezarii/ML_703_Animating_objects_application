@@ -6,14 +6,14 @@ import glob
 from PIL import Image
 import torch.cuda as cuda
 
-from hyperparameters import parameters as params
-from network import Net
+from .hyperparameters import parameters as params
+from .network import Net
 
 def make_prediction(img_path): 
     pl.seed_everything(params['seed'])
     # Setup model
     device = 'cuda' if cuda.is_available() else 'cpu'
-    model = Net.load_from_checkpoint('../weights/Efficientnet_weights-epoch=00-v1.ckpt').to(device) #change '../weights/Efficientnet_weights-epoch=00-v1.ckpt' if dir is different
+    model = Net.load_from_checkpoint('model/Classifier/weights/Efficientnet_weights-epoch=00-v1.ckpt').to(device) #change '../weights/Efficientnet_weights-epoch=00-v1.ckpt' if dir is different
     model.eval()
 
     # Transforms

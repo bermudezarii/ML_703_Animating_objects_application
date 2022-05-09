@@ -7,8 +7,8 @@ import pytorch_lightning as pl
 import torchmetrics
 import torch
 
-from hyperparameters import parameters as params
-import models
+from .hyperparameters import parameters as params
+from ..code import models
 
 
 class Net(pl.LightningModule):

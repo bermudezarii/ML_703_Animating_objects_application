@@ -13,7 +13,7 @@ def init_wandb_run(settings: Dict):
         project="ML703",
         name= datetime.now().strftime('%b%d_%H-%M-%S')+"FOM", #settings['run_name'],
         group= 'First_order_model_periodic',#settings['run_group'],
-        mode=  "online" #"disabled" if settings['debug'] else "online"
+        mode=  "disabled" #"disabled" if settings['debug'] else "online"
     )
     # Log all run settings to WandB
     wandb.config.update(settings)
