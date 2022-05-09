@@ -1,8 +1,10 @@
-<b>!!! Check out our new [paper](https://arxiv.org/pdf/2104.11280.pdf) and [framework](https://github.com/snap-research/articulated-animation) improved for articulated objects</b>
+# Model used: First Order Motion Model for Image Animation
 
-# First Order Motion Model for Image Animation
-Notas de ari: 
-* i'm loading cuda 10.2 (: 
+
+* It was loaded using cuda 10.2 in the MBZUAI labs. 
+
+Continuation of Readme from original model (to check how we ran it go to main folder of git). All credits to the authors from original paper. 
+
 This repository contains the source code for the paper [First Order Motion Model for Image Animation](https://papers.nips.cc/paper/8935-first-order-motion-model-for-image-animation) by Aliaksandr Siarohin, [Stéphane Lathuilière](http://stelat.eu), [Sergey Tulyakov](http://stulyakov.com), [Elisa Ricci](http://elisaricci.eu/) and [Nicu Sebe](http://disi.unitn.it/~sebe/). 
 
 ## Example animations
